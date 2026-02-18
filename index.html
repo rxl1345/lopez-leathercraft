@@ -42,6 +42,7 @@ body {
   overflow: hidden;
   opacity: 0;
   transition: opacity 1s ease;
+  mix-blend-mode: screen;
 }
 
 .video-bg.active {
@@ -55,9 +56,8 @@ body {
   min-height: 60vh;
   max-width: 90vw;
   max-height: 90vh;
-  object-fit: contain;mix-blend-mode: screen;
+  object-fit: contain;
 }
-
 /* Vignette overlay on the video */
 .video-bg::after {
   content: '';
