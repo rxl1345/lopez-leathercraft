@@ -7,6 +7,14 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
+@font-face {
+  font-family: 'NickelScribble';
+  src: url('NickelScribble-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --black: #0A0A0A;
   --beige: #E8DCC8;
@@ -115,7 +123,7 @@ body {
 }
 
 .hero__logo {
-  width: clamp(500px, 80vw, 900px);
+  width: clamp(280px, 45vw, 500px);
   height: auto;
   opacity: 0;
   transform: translateY(20px);
@@ -219,7 +227,7 @@ body {
 .gen-label.gen3 { color: var(--verde); }
 
 .story-card h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'NickelScribble', 'Cormorant Garamond', serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 600;
   color: var(--beige-light);
