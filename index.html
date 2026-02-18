@@ -193,7 +193,6 @@ body {
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
 .scroll-reveal.visible {
@@ -204,7 +203,7 @@ body {
 .reveal__subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
   color: var(--beige-muted);
   letter-spacing: 0.2em;
 }
@@ -624,6 +623,7 @@ body {
         lluviaRows[j].el.style.transform = 'translateX(-' + shift + 'px)';
       }
 
+      updateReveals();
       ticking = false;
     }
 
@@ -654,19 +654,21 @@ body {
     storyObserver.observe(section);
   });
 
-  // Scroll reveal sections
+  // Scroll reveal sections - fade tied to scroll position
   var revealSections = document.querySelectorAll('[data-reveal]');
-  var revealObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.3 });
 
-  revealSections.forEach(function(section) {
-    revealObserver.observe(section);
-  });
+  function updateReveals() {
+    revealSections.forEach(function(section) {
+      var rect = section.getBoundingClientRect();
+      var windowH = window.innerHeight;
+      // Start fading in when top enters bottom 70% of viewport
+      // Fully visible when top reaches 40% of viewport
+      var progress = 1 - (rect.top - windowH * 0.4) / (windowH * 0.3);
+      progress = Math.min(Math.max(progress, 0), 1);
+      section.style.opacity = progress;
+      section.style.transform = 'translateY(' + (20 * (1 - progress)) + 'px)';
+    });
+  }
 
   // Closing
   if (closingSection) {
