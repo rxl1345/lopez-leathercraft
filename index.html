@@ -40,6 +40,12 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.video-bg.active {
+  opacity: 1;
 }
 
 .video-bg video {
@@ -77,7 +83,7 @@ body {
   pointer-events: auto;
 }
 
-/* Hero section - sits over the video */
+/* Hero section - clean, no video */
 .hero {
   height: 100vh;
   display: flex;
@@ -281,8 +287,8 @@ body {
 <!-- Scroll progress bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- Fixed video background -->
-<div class="video-bg">
+<!-- Fixed video background - starts hidden -->
+<div class="video-bg" id="videoBg">
   <video id="mariposaBg" muted playsinline preload="auto">
     <source src="mariposa-scroll.mp4" type="video/mp4">
   </video>
@@ -291,7 +297,7 @@ body {
 <!-- Scrollable content layer -->
 <div class="scroll-content">
 
-  <!-- HERO -->
+  <!-- HERO: clean, just name and tagline on black -->
   <section class="hero">
     <h1 class="hero__title">Lopez Leathercraft</h1>
     <p class="hero__tagline">keep the tradition alive</p>
@@ -371,14 +377,14 @@ body {
 
 <script>
 (function() {
-  const video = document.getElementById('mariposaBg');
-  const progressBar = document.getElementById('scrollProgress');
-  const storySections = document.querySelectorAll('[data-story]');
-  const closingSection = document.querySelector('[data-closing]');
+  var video = document.getElementById('mariposaBg');
+  var videoBg = document.getElementById('videoBg');
+  var progressBar = document.getElementById('scrollProgress');
+  var storySections = document.querySelectorAll('[data-story]');
+  var closingSection = document.querySelector('[data-closing]');
 
   // Wait for video metadata to load
   video.addEventListener('loadedmetadata', function() {
-    // Set initial frame
     video.currentTime = 0;
     initScrollVideo();
   });
@@ -390,18 +396,31 @@ body {
   }
 
   function initScrollVideo() {
-    const duration = video.duration;
-    let ticking = false;
-    let lastScrollY = 0;
+    var duration = video.duration;
+    var ticking = false;
+
+    // How far past the hero before the video appears (80% of viewport height)
+    var heroEnd = window.innerHeight * 0.8;
 
     function updateVideo() {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollFraction = Math.min(Math.max(window.scrollY / scrollHeight, 0), 1);
+      var scrollY = window.scrollY;
+      var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-      // Map scroll to video time
-      video.currentTime = scrollFraction * duration;
+      // Video is hidden during hero, fades in after
+      if (scrollY < heroEnd) {
+        videoBg.classList.remove('active');
+        video.currentTime = 0;
+      } else {
+        videoBg.classList.add('active');
+        // Map scroll (after hero) to video time
+        var storyProgress = (scrollY - heroEnd) / (scrollHeight - heroEnd);
+        storyProgress = Math.min(Math.max(storyProgress, 0), 1);
+        // 0.4 controls flap speed: lower = slower. Adjust to taste.
+        video.currentTime = storyProgress * duration * 0.4;
+      }
 
-      // Update progress bar
+      // Progress bar spans full page
+      var scrollFraction = Math.min(Math.max(scrollY / scrollHeight, 0), 1);
       progressBar.style.width = (scrollFraction * 100) + '%';
 
       ticking = false;
@@ -414,12 +433,17 @@ body {
       }
     }, { passive: true });
 
+    // Recalculate heroEnd on resize
+    window.addEventListener('resize', function() {
+      heroEnd = window.innerHeight * 0.8;
+    });
+
     // Initial call
     updateVideo();
   }
 
   // Intersection Observer for story sections
-  const storyObserver = new IntersectionObserver(function(entries) {
+  var storyObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -433,7 +457,7 @@ body {
 
   // Closing section observer
   if (closingSection) {
-    const closingObserver = new IntersectionObserver(function(entries) {
+    var closingObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
