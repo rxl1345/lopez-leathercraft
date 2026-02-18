@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lopez Leathercraft - Mariposa Scroll</title>
+<title>Lopez Leathercraft - Our Story</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -28,7 +28,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== VIDEO BACKGROUND ===== */
+/* ===== MARIPOSA VIDEO BACKGROUND ===== */
 .video-bg {
   position: fixed;
   top: 0;
@@ -58,18 +58,38 @@ body {
   max-height: 90vh;
   object-fit: contain;
 }
-/* Vignette overlay on the video */
-.video-bg::after {
-  content: '';
+
+/* ===== LLUVIA WAVE BACKGROUND ===== */
+.lluvia-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.lluvia-bg.active {
+  opacity: 1;
+}
+
+.lluvia-row {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 70% 70% at center,
-    transparent 30%,
-    rgba(10, 10, 10, 0.6) 70%,
-    rgba(10, 10, 10, 0.95) 100%
-  );
-  pointer-events: none;
+  width: 300vw;
+  left: 0;
+}
+
+.lluvia-row:nth-child(1) { top: 25vh; opacity: 0.3; }
+.lluvia-row:nth-child(2) { top: 43vh; opacity: 0.5; }
+.lluvia-row:nth-child(3) { top: 61vh; opacity: 0.3; }
+
+.lluvia-row svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ===== SCROLL CONTENT ===== */
@@ -83,7 +103,7 @@ body {
   pointer-events: auto;
 }
 
-/* Hero section - clean, no video */
+/* Hero */
 .hero {
   height: 100vh;
   display: flex;
@@ -144,7 +164,7 @@ body {
   animation: pulse 2.2s ease-in-out infinite;
 }
 
-/* Story sections that scroll over the video */
+/* Story sections */
 .story-section {
   min-height: 100vh;
   display: flex;
@@ -215,7 +235,7 @@ body {
   color: var(--beige-muted);
 }
 
-/* Closing quote */
+/* Closing */
 .closing {
   min-height: 100vh;
   display: flex;
@@ -247,7 +267,7 @@ body {
   letter-spacing: 0.2em;
 }
 
-/* Scroll progress indicator */
+/* Progress bar */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -259,7 +279,6 @@ body {
   transition: width 0.05s linear;
 }
 
-/* ===== ANIMATIONS ===== */
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -269,7 +288,6 @@ body {
   50% { opacity: 0.8; transform: scaleY(1.2); }
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .story-section {
     padding: 3rem 5vw;
@@ -284,20 +302,119 @@ body {
 </head>
 <body>
 
-<!-- Scroll progress bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- Fixed video background - starts hidden -->
+<!-- Mariposa video background -->
 <div class="video-bg" id="videoBg">
   <video id="mariposaBg" muted playsinline preload="auto">
     <source src="mariposa-scroll.mp4" type="video/mp4">
   </video>
 </div>
 
-<!-- Scrollable content layer -->
+<!-- Lluvia wave background -->
+<div class="lluvia-bg" id="lluviaBg">
+  <div class="lluvia-row" id="row1">
+    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-width="10" stroke-linecap="round" fill="none"/>
+      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+    </svg>
+  </div>
+  <div class="lluvia-row" id="row2">
+    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+    </svg>
+  </div>
+  <div class="lluvia-row" id="row3">
+    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-width="10" stroke-linecap="round" fill="none"/>
+      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+    </svg>
+  </div>
+</div>
+
+<!-- Scrollable content -->
 <div class="scroll-content">
 
-  <!-- HERO: clean, just name and tagline on black -->
+  <!-- HERO -->
   <section class="hero">
     <h1 class="hero__title">Lopez Leathercraft</h1>
     <p class="hero__tagline">keep the tradition alive</p>
@@ -307,8 +424,8 @@ body {
     </div>
   </section>
 
-  <!-- STEP 1: From Oaxaca -->
-  <section class="story-section align-left" data-story>
+  <!-- STEP 1: From Oaxaca (mariposa) -->
+  <section class="story-section align-left" data-story data-bg="mariposa">
     <div class="story-card">
       <span class="gen-label gen1">First Generation</span>
       <h2>From Oaxaca</h2>
@@ -317,8 +434,8 @@ body {
     </div>
   </section>
 
-  <!-- STEP 2: Hands That Taught Hands -->
-  <section class="story-section align-right" data-story>
+  <!-- STEP 2: Hands That Taught Hands (mariposa) -->
+  <section class="story-section align-right" data-story data-bg="mariposa">
     <div class="story-card">
       <span class="gen-label gen1">First Generation</span>
       <h2>Hands That Taught Hands</h2>
@@ -327,8 +444,8 @@ body {
     </div>
   </section>
 
-  <!-- STEP 3: By Way of Texas -->
-  <section class="story-section align-left" data-story>
+  <!-- STEP 3: By Way of Texas (transition to lluvia) -->
+  <section class="story-section align-left" data-story data-bg="lluvia">
     <div class="story-card">
       <span class="gen-label gen2">Second Generation</span>
       <h2>By Way of Texas</h2>
@@ -337,8 +454,8 @@ body {
     </div>
   </section>
 
-  <!-- STEP 4: The Reason Didn't Change -->
-  <section class="story-section align-right" data-story>
+  <!-- STEP 4: The Reason Didn't Change (lluvia) -->
+  <section class="story-section align-right" data-story data-bg="lluvia">
     <div class="story-card">
       <span class="gen-label gen2">Second Generation</span>
       <h2>The Reason Didn't Change</h2>
@@ -348,7 +465,7 @@ body {
   </section>
 
   <!-- STEP 5: Growing Up Watching -->
-  <section class="story-section align-left" data-story>
+  <section class="story-section align-left" data-story data-bg="lluvia">
     <div class="story-card">
       <span class="gen-label gen3">Third Generation</span>
       <h2>Growing Up Watching</h2>
@@ -358,7 +475,7 @@ body {
   </section>
 
   <!-- STEP 6: Father and Son -->
-  <section class="story-section align-right" data-story>
+  <section class="story-section align-right" data-story data-bg="lluvia">
     <div class="story-card">
       <span class="gen-label gen3">Third Generation</span>
       <h2>Father and Son, Side by Side</h2>
@@ -379,70 +496,100 @@ body {
 (function() {
   var video = document.getElementById('mariposaBg');
   var videoBg = document.getElementById('videoBg');
+  var lluviaBg = document.getElementById('lluviaBg');
   var progressBar = document.getElementById('scrollProgress');
   var storySections = document.querySelectorAll('[data-story]');
   var closingSection = document.querySelector('[data-closing]');
+  var lluviaRows = [
+    { el: document.getElementById('row1'), speed: 0.4 },
+    { el: document.getElementById('row2'), speed: 1.0 },
+    { el: document.getElementById('row3'), speed: 0.5 }
+  ];
 
-  // Wait for video metadata to load
+  var ticking = false;
+  var heroEnd = window.innerHeight * 0.8;
+  var currentBg = 'none';
+
+  // Video init
   video.addEventListener('loadedmetadata', function() {
     video.currentTime = 0;
-    initScrollVideo();
+    initScroll();
   });
-
-  // Fallback if metadata already loaded
   if (video.readyState >= 1) {
     video.currentTime = 0;
-    initScrollVideo();
+    initScroll();
   }
 
-  function initScrollVideo() {
+  function initScroll() {
     var duration = video.duration;
-    var ticking = false;
 
-    // How far past the hero before the video appears (80% of viewport height)
-    var heroEnd = window.innerHeight * 0.8;
-
-    function updateVideo() {
+    function update() {
       var scrollY = window.scrollY;
       var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var scrollFraction = Math.min(Math.max(scrollY / scrollHeight, 0), 1);
 
-      // Video is hidden during hero, fades in after
+      // Progress bar
+      progressBar.style.width = (scrollFraction * 100) + '%';
+
+      // Determine which background should be active based on visible section
+      var activeBg = 'none';
       if (scrollY < heroEnd) {
-        videoBg.classList.remove('active');
-        video.currentTime = 0;
+        activeBg = 'none';
       } else {
+        // Find the most visible story section
+        for (var i = storySections.length - 1; i >= 0; i--) {
+          var rect = storySections[i].getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.6) {
+            activeBg = storySections[i].getAttribute('data-bg');
+            break;
+          }
+        }
+      }
+
+      // Switch backgrounds
+      if (activeBg === 'mariposa') {
         videoBg.classList.add('active');
-        // Map scroll (after hero) to video time
+        lluviaBg.classList.remove('active');
+      } else if (activeBg === 'lluvia') {
+        videoBg.classList.remove('active');
+        lluviaBg.classList.add('active');
+      } else {
+        videoBg.classList.remove('active');
+        lluviaBg.classList.remove('active');
+      }
+
+      // Mariposa video scrub (only when mariposa is active)
+      if (activeBg === 'mariposa') {
         var storyProgress = (scrollY - heroEnd) / (scrollHeight - heroEnd);
         storyProgress = Math.min(Math.max(storyProgress, 0), 1);
-        // 0.4 controls flap speed: lower = slower. Adjust to taste.
         video.currentTime = storyProgress * duration * 0.4;
       }
 
-      // Progress bar spans full page
-      var scrollFraction = Math.min(Math.max(scrollY / scrollHeight, 0), 1);
-      progressBar.style.width = (scrollFraction * 100) + '%';
+      // Lluvia wave movement (always calculate for smooth transition)
+      var lluviaProgress = scrollY / scrollHeight;
+      for (var j = 0; j < lluviaRows.length; j++) {
+        var shift = lluviaProgress * window.innerWidth * lluviaRows[j].speed;
+        lluviaRows[j].el.style.transform = 'translateX(-' + shift + 'px)';
+      }
 
       ticking = false;
     }
 
     window.addEventListener('scroll', function() {
       if (!ticking) {
-        requestAnimationFrame(updateVideo);
+        requestAnimationFrame(update);
         ticking = true;
       }
     }, { passive: true });
 
-    // Recalculate heroEnd on resize
     window.addEventListener('resize', function() {
       heroEnd = window.innerHeight * 0.8;
     });
 
-    // Initial call
-    updateVideo();
+    update();
   }
 
-  // Intersection Observer for story sections
+  // Story section visibility
   var storyObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -455,7 +602,7 @@ body {
     storyObserver.observe(section);
   });
 
-  // Closing section observer
+  // Closing
   if (closingSection) {
     var closingObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
