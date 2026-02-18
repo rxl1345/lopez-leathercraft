@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lopez Leathercraft - Mariposa Scroll</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --black: #0A0A0A;
+  --beige: #E8DCC8;
+  --beige-light: #F2EBD9;
+  --beige-muted: #C4B89A;
+  --cochineal: #C4402F;
+  --terra: #C47835;
+  --verde: #3D7A4A;
+  --gold: #B89B5E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body {
+  background: var(--black);
+  color: var(--beige);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ===== VIDEO BACKGROUND ===== */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-bg video {
+  width: auto;
+  height: auto;
+  min-width: 60vw;
+  min-height: 60vh;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+/* Vignette overlay on the video */
+.video-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 70% at center,
+    transparent 30%,
+    rgba(10, 10, 10, 0.6) 70%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+/* ===== SCROLL CONTENT ===== */
+.scroll-content {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scroll-content > * {
+  pointer-events: auto;
+}
+
+/* Hero section - sits over the video */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--beige-light);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.4s ease 0.4s forwards;
+}
+
+.hero__tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+  color: var(--beige-muted);
+  margin-top: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.4s ease 0.8s forwards;
+}
+
+.hero__cue {
+  position: absolute;
+  bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  animation: fadeUp 1.4s ease 1.6s forwards;
+}
+
+.hero__cue span {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--beige-muted);
+}
+
+.hero__cue .line {
+  width: 1px;
+  height: 36px;
+  background: var(--beige-muted);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+/* Story sections that scroll over the video */
+.story-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 8vw;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.story-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-section.align-left {
+  justify-content: flex-start;
+}
+
+.story-section.align-right {
+  justify-content: flex-end;
+}
+
+.story-card {
+  max-width: 480px;
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 220, 200, 0.08);
+  border-radius: 2px;
+  padding: 2.5rem 2.8rem;
+}
+
+.story-card .gen-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.gen-label.gen1 { color: var(--cochineal); }
+.gen-label.gen2 { color: var(--terra); }
+.gen-label.gen3 { color: var(--verde); }
+
+.story-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: var(--beige-light);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+
+.story-card .accent-line {
+  width: 40px;
+  height: 2px;
+  margin-bottom: 1.2rem;
+}
+
+.accent-line.gen1 { background: var(--cochineal); }
+.accent-line.gen2 { background: var(--terra); }
+.accent-line.gen3 { background: var(--verde); }
+
+.story-card p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--beige-muted);
+}
+
+/* Closing quote */
+.closing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.closing.visible { opacity: 1; }
+
+.closing__quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--beige-light);
+  letter-spacing: 0.06em;
+}
+
+.closing__sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: var(--beige-muted);
+  margin-top: 1rem;
+  letter-spacing: 0.2em;
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--gold);
+  z-index: 100;
+  width: 0%;
+  transition: width 0.05s linear;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.2); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .story-section {
+    padding: 3rem 5vw;
+    justify-content: center !important;
+  }
+  .story-card {
+    max-width: 100%;
+    padding: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Fixed video background -->
+<div class="video-bg">
+  <video id="mariposaBg" muted playsinline preload="auto">
+    <source src="mariposa-scroll.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- Scrollable content layer -->
+<div class="scroll-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero__title">Lopez Leathercraft</h1>
+    <p class="hero__tagline">keep the tradition alive</p>
+    <div class="hero__cue">
+      <span>Our Story</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- STEP 1: From Oaxaca -->
+  <section class="story-section align-left" data-story>
+    <div class="story-card">
+      <span class="gen-label gen1">First Generation</span>
+      <h2>From Oaxaca</h2>
+      <div class="accent-line gen1"></div>
+      <p>In the mountains of southern Mexico, our grandfather fed his family with leather. Saddlery, belts, bags, small goods made for other businesses to sell. Nine children. One workshop. Every stitch put food on the table.</p>
+    </div>
+  </section>
+
+  <!-- STEP 2: Hands That Taught Hands -->
+  <section class="story-section align-right" data-story>
+    <div class="story-card">
+      <span class="gen-label gen1">First Generation</span>
+      <h2>Hands That Taught Hands</h2>
+      <div class="accent-line gen1"></div>
+      <p>Our father grew up in that workshop. One of the oldest, he became his father's hands. He didn't just learn how to cut and stitch. He learned what it meant to make something that someone else would depend on.</p>
+    </div>
+  </section>
+
+  <!-- STEP 3: By Way of Texas -->
+  <section class="story-section align-left" data-story>
+    <div class="story-card">
+      <span class="gen-label gen2">Second Generation</span>
+      <h2>By Way of Texas</h2>
+      <div class="accent-line gen2"></div>
+      <p>When he moved to Texas, the craft came with him. Belts, wallets, knife holsters. Smaller than what his father built, but the intention was the same. Every piece was a conversation with Oaxaca.</p>
+    </div>
+  </section>
+
+  <!-- STEP 4: The Reason Didn't Change -->
+  <section class="story-section align-right" data-story>
+    <div class="story-card">
+      <span class="gen-label gen2">Second Generation</span>
+      <h2>The Reason Didn't Change</h2>
+      <div class="accent-line gen2"></div>
+      <p>He wasn't feeding nine children with leather. He was holding onto his father, his roots, his identity. The workshop changed. The tools changed. The reason didn't.</p>
+    </div>
+  </section>
+
+  <!-- STEP 5: Growing Up Watching -->
+  <section class="story-section align-left" data-story>
+    <div class="story-card">
+      <span class="gen-label gen3">Third Generation</span>
+      <h2>Growing Up Watching</h2>
+      <div class="accent-line gen3"></div>
+      <p>I grew up watching my father work. The smell of leather, the sound of a mallet on a stamp, the patience of a hand stitch. I was fascinated before I understood what any of it meant.</p>
+    </div>
+  </section>
+
+  <!-- STEP 6: Father and Son -->
+  <section class="story-section align-right" data-story>
+    <div class="story-card">
+      <span class="gen-label gen3">Third Generation</span>
+      <h2>Father and Son, Side by Side</h2>
+      <div class="accent-line gen3"></div>
+      <p>Today, my father and I work together on new designs. Belts, laptop sleeves, desk mats, knife sheaths, camera straps, wallets, and wet molded bags. Three generations of knowledge flow through every piece we make.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing" data-closing>
+    <p class="closing__quote">"Keep the Tradition Alive"</p>
+    <p class="closing__sub">Oaxaca &middot; Texas &middot; Three Generations</p>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  const video = document.getElementById('mariposaBg');
+  const progressBar = document.getElementById('scrollProgress');
+  const storySections = document.querySelectorAll('[data-story]');
+  const closingSection = document.querySelector('[data-closing]');
+
+  // Wait for video metadata to load
+  video.addEventListener('loadedmetadata', function() {
+    // Set initial frame
+    video.currentTime = 0;
+    initScrollVideo();
+  });
+
+  // Fallback if metadata already loaded
+  if (video.readyState >= 1) {
+    video.currentTime = 0;
+    initScrollVideo();
+  }
+
+  function initScrollVideo() {
+    const duration = video.duration;
+    let ticking = false;
+    let lastScrollY = 0;
+
+    function updateVideo() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollFraction = Math.min(Math.max(window.scrollY / scrollHeight, 0), 1);
+
+      // Map scroll to video time
+      video.currentTime = scrollFraction * duration;
+
+      // Update progress bar
+      progressBar.style.width = (scrollFraction * 100) + '%';
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateVideo);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial call
+    updateVideo();
+  }
+
+  // Intersection Observer for story sections
+  const storyObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  storySections.forEach(function(section) {
+    storyObserver.observe(section);
+  });
+
+  // Closing section observer
+  if (closingSection) {
+    const closingObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+    closingObserver.observe(closingSection);
+  }
+})();
+</script>
+</body>
+</html>
