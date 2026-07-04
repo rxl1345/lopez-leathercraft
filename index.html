@@ -8,7 +8,7 @@
 <meta property="og:title" content="Lopez Leathercraft - Keep the Tradition Alive">
 <meta property="og:description" content="Four bags. One family craft, three generations deep. From Oaxaca, by way of Texas.">
 <!-- After deploy, replace YOUR-SITE with your actual Netlify subdomain (or custom domain) -->
-<meta property="og:image" content="https://lopezleathercraft.com/og-image.png">
+<meta property="og:image" content="https://YOUR-SITE.netlify.app/og-image.png">
 <meta property="og:type" content="website">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
@@ -394,6 +394,28 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.lls-photo img.lls-sketch {
+  object-fit: contain;
+  padding: 14%;
+  opacity: 0.92;
+}
+
+.lls-maker-photo {
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid rgba(232, 220, 200, 0.08);
+  margin-bottom: 0.7rem;
+  display: block;
+}
+
+.lls-maker-caption {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--beige-muted);
+  margin-bottom: 1.4rem;
 }
 
 .lls-photo-mark {
@@ -938,9 +960,8 @@ body {
       <!-- BAG 01 -->
       <article class="lls-card">
         <div class="lls-photo">
-          <!-- Jesse's shot goes here, 4:5 crop:
-               <img src="images/bag-01.jpg" alt="Chocolate wet-molded crossbody bag, No. 0002, front view"> -->
-          <span class="lls-photo-mark">No. 0002 &middot; Photo to come</span>
+          <!-- Replace sketch with Jesse's 4:5 shot of No. 0002 when ready -->
+          <img class="lls-sketch" src="images/crossbody-sketch.png" alt="Wet-molded crossbody, No. 0002. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0002</span>
@@ -963,7 +984,8 @@ body {
       <!-- BAG 02 -->
       <article class="lls-card">
         <div class="lls-photo">
-          <span class="lls-photo-mark">No. 0003 &middot; Photo to come</span>
+          <!-- Replace sketch with Jesse's 4:5 shot of No. 0003 when ready -->
+          <img class="lls-sketch" src="images/crossbody-sketch.png" alt="Wet-molded crossbody, No. 0003. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0003</span>
@@ -986,7 +1008,8 @@ body {
       <!-- BAG 03 -->
       <article class="lls-card">
         <div class="lls-photo">
-          <span class="lls-photo-mark">No. 0004 &middot; Photo to come</span>
+          <!-- Replace sketch with Jesse's 4:5 shot of No. 0004 when ready -->
+          <img class="lls-sketch" src="images/crossbody-sketch.png" alt="Wet-molded crossbody, No. 0004. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0004</span>
@@ -1009,7 +1032,8 @@ body {
       <!-- BAG 04 -->
       <article class="lls-card">
         <div class="lls-photo">
-          <span class="lls-photo-mark">No. 0005 &middot; Photo to come</span>
+          <!-- Replace sketch with Jesse's 4:5 shot of No. 0005 when ready -->
+          <img class="lls-sketch" src="images/crossbody-sketch.png" alt="Wet-molded crossbody, No. 0005. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0005</span>
@@ -1033,8 +1057,8 @@ body {
 
     <!-- NOTE FROM THE MAKER -->
     <div class="lls-maker">
-      <!-- Maker photo slot (Jesse): a shot of Rob at the bench or hands at work goes well above this note:
-           <img src="images/rob-at-bench.jpg" alt="Rob Lopez at the workbench" style="width:100%; border-radius:2px; margin-bottom:1.4rem;"> -->
+      <img class="lls-maker-photo" src="images/no-0001-beach.jpg" alt="No. 0001, a chocolate wet-molded crossbody bag with a rich patina, resting on a beach blanket in the sun" loading="lazy">
+      <p class="lls-maker-caption">No. 0001, off duty. Made for my wife before there was a batch.</p>
       <p class="lls-maker-note">I cut, molded, stitched, and burnished all four of these myself, at my bench in Dallas, with the methods my father taught me and his father taught him. This is the same craft that fed nine kids in Oaxaca. When you carry one of these, you're carrying that.</p>
       <p class="lls-maker-sign">Rob Lopez, Third Generation</p>
     </div>
