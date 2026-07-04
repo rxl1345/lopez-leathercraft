@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lopez Leathercraft - Our Story</title>
+<meta name="description" content="Three generations of leathercraft, from Oaxaca by way of Texas. Batch I: four wet-molded crossbody bags in Wickett & Craig English Bridle.">
+<meta property="og:title" content="Lopez Leathercraft - Keep the Tradition Alive">
+<meta property="og:description" content="Four bags. One family craft, three generations deep. From Oaxaca, by way of Texas.">
+<!-- After deploy, replace YOUR-SITE with your actual Netlify subdomain (or custom domain) -->
+<meta property="og:image" content="https://YOUR-SITE.netlify.app/og-image.png">
+<meta property="og:type" content="website">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -36,6 +42,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 body {
   background: var(--black);
   color: var(--beige);
@@ -51,6 +60,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 0;
   display: flex;
   align-items: center;
@@ -82,6 +92,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 0;
   overflow: hidden;
   opacity: 0;
@@ -122,6 +133,7 @@ body {
 /* Hero */
 .hero {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,7 +143,7 @@ body {
 }
 
 .hero__logo {
-  width: clamp(500px, 80vw, 900px);
+  width: clamp(280px, 85vw, 900px);
   height: auto;
   opacity: 0;
   transform: translateY(20px);
@@ -211,6 +223,7 @@ body {
 /* Story sections */
 .story-section {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   padding: 4rem 8vw;
@@ -283,6 +296,7 @@ body {
 /* Closing */
 .closing {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -308,6 +322,356 @@ body {
   color: var(--beige-muted);
   margin-top: 1rem;
   letter-spacing: 0.2em;
+}
+
+/* ===== SHOP — THE FIRST BATCH ===== */
+.lls-shop {
+  position: relative;
+  padding: 6rem 8vw 7rem;
+}
+
+.lls-shop .lls-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.lls-shop h2 {
+  font-family: 'Mericana', 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--beige-light);
+  margin-bottom: 1.2rem;
+}
+
+.lls-shop .lls-lede {
+  font-family: 'NickelScribble', 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--beige-muted);
+  max-width: 520px;
+  margin-bottom: 1.2rem;
+}
+
+.lls-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1.8rem;
+}
+
+@media (min-width: 720px) {
+  .lls-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+.lls-card {
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 220, 200, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.lls-photo {
+  aspect-ratio: 4 / 5;
+  position: relative;
+  background: linear-gradient(165deg, #3B2314 0%, #1C0F07 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(232, 220, 200, 0.08);
+}
+
+.lls-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lls-photo-mark {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(196, 184, 154, 0.55);
+  border: 1px solid rgba(196, 184, 154, 0.3);
+  padding: 0.7rem 1rem;
+}
+
+.lls-plate {
+  padding: 1.8rem 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lls-batch {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+  display: inline-block;
+}
+
+.lls-plate h3 {
+  font-family: 'Mericana', 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--beige-light);
+  margin-bottom: 0.9rem;
+}
+
+.lls-accent {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 1.1rem;
+}
+
+.lls-specs {
+  list-style: none;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  border-top: 1px solid rgba(232, 220, 200, 0.08);
+}
+
+.lls-specs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(232, 220, 200, 0.08);
+  font-size: 0.8rem;
+}
+
+.lls-specs .k {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  color: var(--beige-muted);
+  padding-top: 0.15rem;
+  white-space: nowrap;
+}
+
+.lls-specs .v {
+  color: var(--beige);
+  text-align: right;
+  font-weight: 400;
+}
+
+.lls-buy-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.lls-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: var(--beige-light);
+}
+
+.lls-price sup { font-size: 1rem; }
+
+.lls-buy {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.5rem;
+  min-height: 48px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: none;
+  background: var(--beige-light);
+  color: var(--black);
+  transition: background 0.2s ease;
+}
+
+.lls-buy:hover { background: var(--gold); }
+
+.lls-buy:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.lls-buy[data-placeholder] {
+  background: transparent;
+  border: 1px solid var(--beige-muted);
+  color: var(--beige-muted);
+  cursor: default;
+}
+
+.lls-shopify-slot:empty { display: none; }
+
+.lls-note {
+  font-family: 'NickelScribble', 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--beige-muted);
+  max-width: 520px;
+  margin-top: 3rem;
+}
+
+.lls-note a { color: var(--gold); }
+
+/* ===== PERSISTENT SHOP PILL ===== */
+.shop-pill {
+  position: fixed;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  z-index: 90;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--beige-light);
+  padding: 0.85rem 1.3rem;
+  border-radius: 2px;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s ease;
+}
+.shop-pill.on { opacity: 1; transform: none; pointer-events: auto; }
+.shop-pill:hover { background: var(--gold); }
+.shop-pill:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ===== BATCH STATUS ===== */
+.lls-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--beige);
+  margin: -0.4rem 0 1.4rem;
+}
+.lls-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--verde);
+}
+
+/* ===== SOLD STATE — add class "lls-sold" to a card ===== */
+.lls-card.lls-sold .lls-photo { filter: grayscale(0.6) brightness(0.75); }
+.lls-card.lls-sold .lls-batch { color: var(--beige-muted); }
+.lls-card.lls-sold .lls-buy {
+  background: transparent;
+  border: 1px solid var(--beige-muted);
+  color: var(--beige-muted);
+  pointer-events: none;
+}
+
+/* ===== NOTE FROM THE MAKER ===== */
+.lls-maker {
+  max-width: 560px;
+  margin: 3.5rem 0 0;
+  padding: 2rem 2.2rem;
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid rgba(232, 220, 200, 0.08);
+  border-left: 2px solid var(--gold);
+  border-radius: 2px;
+}
+.lls-maker-note {
+  font-family: 'NickelScribble', 'DM Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--beige);
+}
+.lls-maker-sign {
+  font-family: 'Mericana', 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--beige-light);
+  margin-top: 1.2rem;
+}
+
+/* ===== THE HIDE (provenance) ===== */
+.lls-hide {
+  max-width: 560px;
+  margin: 2.5rem 0 0;
+}
+.lls-hide p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--beige-muted);
+  margin-top: 0.8rem;
+}
+
+/* ===== THE PROMISE ===== */
+.lls-promise {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  max-width: 560px;
+}
+.lls-promise li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(232, 220, 200, 0.08);
+  font-size: 0.85rem;
+  color: var(--beige);
+}
+.lls-promise li::before {
+  content: '·';
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* ===== BATCH II WAITLIST ===== */
+.lls-waitlist {
+  max-width: 560px;
+  margin: 3.5rem 0 0;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(232, 220, 200, 0.08);
+}
+.lls-waitlist-copy {
+  font-family: 'NickelScribble', 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--beige-muted);
+  margin: 0.8rem 0 1.4rem;
+}
+.lls-waitlist-form {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.lls-input {
+  flex: 1 1 220px;
+  min-height: 48px;
+  padding: 0.6rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--beige-light);
+  background: transparent;
+  border: 1px solid var(--beige-muted);
+  border-radius: 2px;
+}
+.lls-input::placeholder { color: rgba(196, 184, 154, 0.55); }
+.lls-input:focus-visible {
+  outline: none;
+  border-color: var(--gold);
 }
 
 /* Progress bar */
@@ -340,6 +704,20 @@ body {
     max-width: 100%;
     padding: 2rem;
   }
+  /* backdrop blur over fixed video is a GPU tax on phones */
+  .story-card, .lls-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(10, 10, 10, 0.9);
+  }
+  .lls-shop { padding: 3.5rem 5vw 4.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__logo, .hero__title, .hero__tagline { animation: none; opacity: 1; transform: none; }
+  .hero__cue .line { animation: none; }
+  .scroll-reveal, .story-section, .closing { opacity: 1 !important; transform: none !important; }
+  .video-bg, .lluvia-bg, .lls-buy { transition: none !important; }
 }
 </style>
 </head>
@@ -347,9 +725,11 @@ body {
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<a href="#shop" class="shop-pill" id="shopPill">Batch I &middot; Shop</a>
+
 <!-- Mariposa video background -->
 <div class="video-bg" id="videoBg">
-  <video id="mariposaBg" muted playsinline preload="auto">
+  <video id="mariposaBg" muted playsinline loop preload="metadata">
     <source src="mariposa-scroll.mp4" type="video/mp4">
   </video>
 </div>
@@ -535,6 +915,160 @@ body {
     </div>
   </section>
 
+  <!-- THE WORK CUE -->
+  <section class="scroll-reveal" data-reveal>
+    <div class="hero__cue">
+      <span>The Work</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- SHOP: THE FIRST BATCH -->
+  <section class="lls-shop" id="shop" aria-labelledby="lls-shop-heading">
+    <span class="lls-eyebrow">Batch I &middot; Four Made &middot; Dallas, Texas</span>
+    <h2 id="lls-shop-heading">The First Batch</h2>
+    <!-- Update as bags sell: "Three available" etc. When a bag sells,
+         add class "lls-sold" to its card below and change its button text to "Sold" -->
+    <p class="lls-status"><span class="lls-status-dot"></span>Four available</p>
+    <p class="lls-lede">Four crossbody bags. I picked this beautiful chocolate out from one of my favorite tanneries, Wickett &amp; Craig, wet-molded each one for at least 24 hours, then hand-cut, stitched, riveted, and finished every piece myself. No two are the same, because the leather is unique to each section of the hide.</p>
+    <p class="lls-lede">The beautiful thing about 10 oz English Bridle is that it ages. The patina gets better the longer you carry it, and it's one of the toughest things you'll ever wear on your body. The first one of these I made for my wife. She wears it every day. That bag is No. 0001, the first piece ever made under the Lopez Leathercraft banner. These four are Nos. 0002 through 0005. When these four are gone, the batch is closed.</p>
+
+    <div class="lls-grid">
+
+      <!-- BAG 01 -->
+      <article class="lls-card">
+        <div class="lls-photo">
+          <!-- Jesse's shot goes here, 4:5 crop:
+               <img src="images/bag-01.jpg" alt="Chocolate wet-molded crossbody bag, No. 0002, front view"> -->
+          <span class="lls-photo-mark">No. 0002 &middot; Photo to come</span>
+        </div>
+        <div class="lls-plate">
+          <span class="lls-batch">Batch I &middot; No. 0002</span>
+          <h3>Wet-Molded Crossbody</h3>
+          <div class="lls-accent"></div>
+          <ul class="lls-specs">
+            <li><span class="k">Hide</span><span class="v">Wickett &amp; Craig English Bridle, 10 oz</span></li>
+            <li><span class="k">Color</span><span class="v">Chocolate</span></li>
+            <li><span class="k">Build</span><span class="v">Wet-molded &middot; saddle-stitched</span></li>
+            <li><span class="k">Hardware</span><span class="v">Solid brass</span></li>
+          </ul>
+          <div class="lls-buy-row">
+            <span class="lls-price"><sup>$</sup>325</span>
+            <div class="lls-shopify-slot" id="lls-buy-01"></div>
+            <button class="lls-buy" data-placeholder disabled>Coming Soon</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- BAG 02 -->
+      <article class="lls-card">
+        <div class="lls-photo">
+          <span class="lls-photo-mark">No. 0003 &middot; Photo to come</span>
+        </div>
+        <div class="lls-plate">
+          <span class="lls-batch">Batch I &middot; No. 0003</span>
+          <h3>Wet-Molded Crossbody</h3>
+          <div class="lls-accent"></div>
+          <ul class="lls-specs">
+            <li><span class="k">Hide</span><span class="v">Wickett &amp; Craig English Bridle, 10 oz</span></li>
+            <li><span class="k">Color</span><span class="v">Chocolate</span></li>
+            <li><span class="k">Build</span><span class="v">Wet-molded &middot; saddle-stitched</span></li>
+            <li><span class="k">Hardware</span><span class="v">Solid brass</span></li>
+          </ul>
+          <div class="lls-buy-row">
+            <span class="lls-price"><sup>$</sup>325</span>
+            <div class="lls-shopify-slot" id="lls-buy-02"></div>
+            <button class="lls-buy" data-placeholder disabled>Coming Soon</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- BAG 03 -->
+      <article class="lls-card">
+        <div class="lls-photo">
+          <span class="lls-photo-mark">No. 0004 &middot; Photo to come</span>
+        </div>
+        <div class="lls-plate">
+          <span class="lls-batch">Batch I &middot; No. 0004</span>
+          <h3>Wet-Molded Crossbody</h3>
+          <div class="lls-accent"></div>
+          <ul class="lls-specs">
+            <li><span class="k">Hide</span><span class="v">Wickett &amp; Craig English Bridle, 10 oz</span></li>
+            <li><span class="k">Color</span><span class="v">Chocolate</span></li>
+            <li><span class="k">Build</span><span class="v">Wet-molded &middot; saddle-stitched</span></li>
+            <li><span class="k">Hardware</span><span class="v">Solid brass</span></li>
+          </ul>
+          <div class="lls-buy-row">
+            <span class="lls-price"><sup>$</sup>325</span>
+            <div class="lls-shopify-slot" id="lls-buy-03"></div>
+            <button class="lls-buy" data-placeholder disabled>Coming Soon</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- BAG 04 -->
+      <article class="lls-card">
+        <div class="lls-photo">
+          <span class="lls-photo-mark">No. 0005 &middot; Photo to come</span>
+        </div>
+        <div class="lls-plate">
+          <span class="lls-batch">Batch I &middot; No. 0005</span>
+          <h3>Wet-Molded Crossbody</h3>
+          <div class="lls-accent"></div>
+          <ul class="lls-specs">
+            <li><span class="k">Hide</span><span class="v">Wickett &amp; Craig English Bridle, 10 oz</span></li>
+            <li><span class="k">Color</span><span class="v">Chocolate</span></li>
+            <li><span class="k">Build</span><span class="v">Wet-molded &middot; saddle-stitched</span></li>
+            <li><span class="k">Hardware</span><span class="v">Solid brass</span></li>
+          </ul>
+          <div class="lls-buy-row">
+            <span class="lls-price"><sup>$</sup>325</span>
+            <div class="lls-shopify-slot" id="lls-buy-04"></div>
+            <button class="lls-buy" data-placeholder disabled>Coming Soon</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- NOTE FROM THE MAKER -->
+    <div class="lls-maker">
+      <!-- Maker photo slot (Jesse): a shot of Rob at the bench or hands at work goes well above this note:
+           <img src="images/rob-at-bench.jpg" alt="Rob Lopez at the workbench" style="width:100%; border-radius:2px; margin-bottom:1.4rem;"> -->
+      <p class="lls-maker-note">I cut, molded, stitched, and burnished all four of these myself, at my bench in Dallas, with the methods my father taught me and his father taught him. This is the same craft that fed nine kids in Oaxaca. When you carry one of these, you're carrying that.</p>
+      <p class="lls-maker-sign">Rob Lopez, Third Generation</p>
+    </div>
+
+    <!-- THE HIDE (provenance) -->
+    <div class="lls-hide">
+      <span class="lls-batch">The Hide</span>
+      <p>Wickett &amp; Craig has been vegetable-tanning leather since 1867, one of the last tanneries in America still doing it the slow way. Their English Bridle is hot-stuffed with waxes and tallows. It is dense enough to hold a wet-molded shape for decades, and it ages into a finish no factory can imitate. All four bags came from one single side of chocolate.</p>
+    </div>
+
+    <!-- THE PROMISE -->
+    <ul class="lls-promise">
+      <li>Made entirely by hand in Dallas, Texas</li>
+      <li>Solid brass hardware, nothing plated</li>
+      <li>If a stitch ever fails, send it back and I'll repair it</li>
+    </ul>
+
+    <!-- BATCH II WAITLIST — Netlify Forms: activates automatically once
+         the site is deployed on Netlify (form submissions land in your
+         Netlify dashboard; free tier includes 100/month) -->
+    <div class="lls-waitlist">
+      <span class="lls-batch">Batch II</span>
+      <p class="lls-waitlist-copy">There are only four of these, and there's no restock. The next batch will be its own thing. Leave your email and you'll hear about it before anyone else.</p>
+      <form name="batch-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="lls-waitlist-form">
+        <input type="hidden" name="form-name" value="batch-waitlist">
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <input type="email" name="email" required placeholder="your@email.com" class="lls-input" aria-label="Email address">
+        <button type="submit" class="lls-buy">Get First Word</button>
+      </form>
+    </div>
+
+    <p class="lls-note">Every bag ships with the story behind it: three generations of leathercraft, from Oaxaca to Texas. Questions before you buy? Find us on Instagram <a href="https://instagram.com/lopezleathercraft">@lopezleathercraft</a>.</p>
+  </section>
+
   <!-- CLOSING -->
   <section class="closing" data-closing>
     <img src="Logo1.svg" alt="Lopez Leathercraft" class="closing__logo">
@@ -560,6 +1094,10 @@ body {
   var ticking = false;
   var heroEnd = window.innerHeight * 0.8;
   var currentBg = 'none';
+  var isMobile = window.matchMedia('(pointer: coarse), (max-width: 768px)').matches;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var shopSection = document.getElementById('shop');
+  var shopPill = document.getElementById('shopPill');
 
   // Video init
   video.addEventListener('loadedmetadata', function() {
@@ -573,6 +1111,7 @@ body {
 
   function initScroll() {
     var duration = video.duration;
+    if (isMobile) { video.playbackRate = 0.6; }
 
     function update() {
       var scrollY = window.scrollY;
@@ -581,6 +1120,13 @@ body {
 
       // Progress bar
       progressBar.style.width = (scrollFraction * 100) + '%';
+
+      // Shop pill: appears after the hero, retires when the shop arrives
+      if (shopPill && shopSection) {
+        var shopTop = shopSection.getBoundingClientRect().top;
+        var showPill = scrollY > heroEnd && shopTop > window.innerHeight * 0.55;
+        shopPill.classList.toggle('on', showPill);
+      }
 
       // Determine which background should be active based on visible section
       var activeBg = 'none';
@@ -609,18 +1155,28 @@ body {
         lluviaBg.classList.remove('active');
       }
 
-      // Mariposa video scrub (only when mariposa is active)
+      // Mariposa video: scrub on desktop, gentle loop on touch, still frame if reduced motion
       if (activeBg === 'mariposa') {
-        var storyProgress = (scrollY - heroEnd) / (scrollHeight - heroEnd);
-        storyProgress = Math.min(Math.max(storyProgress, 0), 1);
-        video.currentTime = storyProgress * duration * 0.15;
+        if (reduceMotion) {
+          // hold first frame
+        } else if (isMobile) {
+          if (video.paused) { video.play().catch(function(){}); }
+        } else {
+          var storyProgress = (scrollY - heroEnd) / (scrollHeight - heroEnd);
+          storyProgress = Math.min(Math.max(storyProgress, 0), 1);
+          video.currentTime = storyProgress * duration * 0.15;
+        }
+      } else if (isMobile && !video.paused) {
+        video.pause();
       }
 
-      // Lluvia wave movement (always calculate for smooth transition)
-      var lluviaProgress = scrollY / scrollHeight;
-      for (var j = 0; j < lluviaRows.length; j++) {
-        var shift = lluviaProgress * window.innerWidth * lluviaRows[j].speed;
-        lluviaRows[j].el.style.transform = 'translateX(-' + shift + 'px)';
+      // Lluvia wave movement (skipped when the visitor prefers reduced motion)
+      if (!reduceMotion) {
+        var lluviaProgress = scrollY / scrollHeight;
+        for (var j = 0; j < lluviaRows.length; j++) {
+          var shift = lluviaProgress * window.innerWidth * lluviaRows[j].speed;
+          lluviaRows[j].el.style.transform = 'translateX(-' + shift + 'px)';
+        }
       }
 
       updateReveals();
@@ -659,6 +1215,7 @@ body {
 
   function updateReveals() {
     revealSections.forEach(function(section) {
+      if (reduceMotion) { section.style.opacity = 1; section.style.transform = 'none'; return; }
       var rect = section.getBoundingClientRect();
       var windowH = window.innerHeight;
       // Start fading in when top enters bottom 70% of viewport
@@ -682,6 +1239,67 @@ body {
     closingObserver.observe(closingSection);
   }
 })();
+</script>
+
+<!-- ============================================================
+  SHOPIFY EMBED — paste zone (when Shopify Starter is live)
+  ------------------------------------------------------------
+  1. In Shopify admin, create the 4 products and publish each
+     to the Buy Button sales channel. Note each product ID.
+  2. Replace YOUR-STORE and YOUR-STOREFRONT-ACCESS-TOKEN below
+     with the values from your generated Buy Button code.
+  3. Replace the four PRODUCT_ID_0X values.
+  4. Flip LIVE to true. The "Coming Soon" placeholder buttons
+     hide themselves automatically.
+  Buttons mount into #lls-buy-01 … #lls-buy-04 in the shop grid.
+  ============================================================ -->
+<script type="text/javascript">
+/* <![CDATA[ */
+(function () {
+  var LIVE = false; // ← flip to true after filling in the values below
+  if (!LIVE) return;
+
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy && window.ShopifyBuy.UI) { init(); } else { load(); }
+
+  function load() {
+    var s = document.createElement('script');
+    s.async = true; s.src = scriptURL; s.onload = init;
+    (document.head || document.body).appendChild(s);
+  }
+
+  function init() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'YOUR-STORE.myshopify.com',
+      storefrontAccessToken: 'YOUR-STOREFRONT-ACCESS-TOKEN'
+    });
+    var products = [
+      { id: 'PRODUCT_ID_01', node: 'lls-buy-01' },
+      { id: 'PRODUCT_ID_02', node: 'lls-buy-02' },
+      { id: 'PRODUCT_ID_03', node: 'lls-buy-03' },
+      { id: 'PRODUCT_ID_04', node: 'lls-buy-04' }
+    ];
+    var options = {
+      product: {
+        iframe: false, /* inherit site styles */
+        contents: { img: false, title: false, price: false },
+        text: { button: 'Buy · $325' },
+        classes: { button: 'lls-buy' }
+      },
+      cart: { text: { total: 'Subtotal', button: 'Checkout' } }
+    };
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      products.forEach(function (p) {
+        var node = document.getElementById(p.node);
+        if (!node) return;
+        ui.createComponent('product', { id: p.id, node: node, options: options });
+        var ph = node.parentElement.querySelector('[data-placeholder]');
+        if (ph) { ph.style.display = 'none'; }
+      });
+    });
+  }
+})();
+/* ]]> */
 </script>
 </body>
 </html>
