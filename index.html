@@ -369,6 +369,14 @@ body {
   margin-bottom: 1.2rem;
 }
 
+.lls-how {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--beige);
+  max-width: 520px;
+  margin-bottom: 1.6rem;
+}
+
 .lls-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -567,6 +575,34 @@ body {
 }
 
 .lls-shopify-slot:empty { display: none; }
+
+.lls-build-term {
+  max-width: 560px;
+  margin-top: 1.6rem;
+}
+
+.lls-build-term .lls-term-name {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--beige);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.lls-build-term p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--beige-muted);
+}
+
+.closing__stamp {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--beige-muted);
+  margin-top: 1.6rem;
+}
 
 .lls-note {
   font-family: 'NickelScribble', 'DM Sans', sans-serif;
@@ -955,8 +991,17 @@ body {
     <!-- Update as bags sell: "Three available" etc. When a bag sells,
          add class "lls-sold" to its card below and change its button text to "Sold" -->
     <p class="lls-status"><span class="lls-status-dot"></span>Four available</p>
+    <p class="lls-how">We make in small, numbered batches. When a batch sells out, it is closed for good. No restocks, no reruns. This drop: four crossbody bags, all cut from one hide.</p>
     <p class="lls-lede">Four crossbody bags. I picked this beautiful chocolate out from one of my favorite tanneries, Wickett &amp; Craig, wet-molded each one for at least 24 hours, then hand-cut, stitched, riveted, and finished every piece myself. No two are the same, because the leather is unique to each section of the hide.</p>
     <p class="lls-lede">The beautiful thing about 10 oz English Bridle is that it ages. The patina gets better the longer you carry it, and it's one of the toughest things you'll ever wear on your body. The first one of these I made for my wife. She wears it every day. That bag is No. 0001, the first piece ever made under the Lopez Leathercraft banner. These four are Nos. 0002 through 0005. When these four are gone, the batch is closed.</p>
+
+    <!-- THE BAG: shared product description -->
+    <div class="lls-hide" style="margin: 2.5rem 0 2.2rem;">
+      <span class="lls-batch">The Bag</span>
+      <img class="lls-figure" src="hide-and-hardware.jpg" alt="Suede hides, waxed thread, solid brass rivets and hardware, and edge tools laid out on the workbench" loading="lazy">
+      <!-- ROB: replace the bracketed line below with real numbers before launch -->
+      <p>A structured crossbody with a wet-molded body, a full flap, and a solid brass button stud closure. Unlined on purpose: the leather is the lining. Sized for the essentials, your phone, wallet, keys, and a little room to spare. [Dimensions: __" wide, __" tall, __" deep. Strap adjusts from __" to __".]</p>
+    </div>
 
     <div class="lls-grid">
 
@@ -1069,8 +1114,33 @@ body {
     <!-- THE HIDE (provenance) -->
     <div class="lls-hide">
       <span class="lls-batch">The Hide</span>
-      <img class="lls-figure" src="hide-and-hardware.jpg" alt="Suede hides, waxed thread, solid brass rivets and hardware, and edge tools laid out on the workbench" loading="lazy">
       <p>Wickett &amp; Craig has been vegetable-tanning leather since 1867, one of the last tanneries in America still doing it the slow way. Their English Bridle is hot-stuffed with waxes and tallows. It is dense enough to hold a wet-molded shape for decades, and it ages into a finish no factory can imitate. All four bags came from one single side of chocolate.</p>
+    </div>
+
+    <!-- THE BUILD: technique education -->
+    <div class="lls-hide" id="build">
+      <span class="lls-batch">The Build</span>
+      <p>Nobody is born knowing why one bag costs what it costs. Here is what the words on the spec sheet actually mean, and why they matter once the bag is on your shoulder.</p>
+
+      <div class="lls-build-term">
+        <span class="lls-term-name">Wet Molding</span>
+        <p>Vegetable-tanned leather has a memory. Soak it, shape it over a wooden form, and let it dry for a day or more, and it holds that shape for the rest of its life. That is why these bags stand on their own. No plastic, no stiffeners, no lining doing hidden work. Just leather, taught to be a bag.</p>
+      </div>
+
+      <div class="lls-build-term">
+        <span class="lls-term-name">Saddle Stitching</span>
+        <p>Every seam is sewn by hand with two needles on one thread, crossing inside each hole. A sewing machine locks a single thread, and when it breaks the seam can unravel. A saddle stitch cannot unzip. If one pass ever wears through, the other still holds. It is slower by a mile, and it is how saddles outlive their riders.</p>
+      </div>
+
+      <div class="lls-build-term">
+        <span class="lls-term-name">Waxed Thread</span>
+        <p>I sew with Ritza 25, a braided polyester thread waxed for the harness trade. The wax locks each stitch in place, sheds water, and keeps the thread from sawing itself thin through years of flexing.</p>
+      </div>
+
+      <div class="lls-build-term">
+        <span class="lls-term-name">Burnished Edges</span>
+        <p>Every cut edge is slicked with Tokonole, a Japanese burnishing gum, and rubbed until the fibers seal into one smooth line. A raw edge frays and drinks water. A burnished edge wears like the rest of the hide.</p>
+      </div>
     </div>
 
     <!-- THE PROMISE -->
@@ -1106,6 +1176,7 @@ body {
   <section class="closing" data-closing>
     <img src="Logo1.svg" alt="Lopez Leathercraft" class="closing__logo">
     <p class="closing__sub">From Oaxaca, by way of Texas</p>
+    <p class="closing__stamp">Lopez Leathercraft &middot; Dallas, Texas &middot; Batch I &middot; MMXXVI</p>
   </section>
 
 </div>
