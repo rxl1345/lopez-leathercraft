@@ -1171,8 +1171,6 @@ body {
     heroEnd = window.innerHeight * 0.8;
   });
 
-  update();
-
   // Story section visibility
   var storyObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
@@ -1202,6 +1200,9 @@ body {
       section.style.transform = 'translateY(' + (20 * (1 - progress)) + 'px)';
     });
   }
+
+  // First paint: everything above is declared, safe to run
+  update();
 
   // Closing
   if (closingSection) {
