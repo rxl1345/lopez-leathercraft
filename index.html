@@ -10,9 +10,10 @@
 <!-- After deploy, replace YOUR-SITE with your actual Netlify subdomain (or custom domain) -->
 <meta property="og:image" content="https://YOUR-SITE.netlify.app/og-image.png">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
-
 @font-face {
   font-family: 'NickelScribble';
   src: url('NickelScribble-Regular.otf') format('opentype');
@@ -53,38 +54,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== MARIPOSA VIDEO BACKGROUND ===== */
-.video-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 1s ease;
-  mix-blend-mode: screen;
-}
-
-.video-bg.active {
-  opacity: 1;
-}
-
-.video-bg video {
-  width: auto;
-  height: auto;
-  min-width: 60vw;
-  min-height: 60vh;
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-}
-
 /* ===== LLUVIA WAVE BACKGROUND ===== */
 .lluvia-bg {
   position: fixed;
@@ -112,6 +81,9 @@ body {
 .lluvia-row:nth-child(1) { top: 25vh; opacity: 0.3; }
 .lluvia-row:nth-child(2) { top: 43vh; opacity: 0.5; }
 .lluvia-row:nth-child(3) { top: 61vh; opacity: 0.3; }
+
+.lluvia-row svg { stroke-width: 10; }
+.lluvia-row:nth-child(2) svg { stroke-width: 12; }
 
 .lluvia-row svg {
   width: 100%;
@@ -791,7 +763,7 @@ body {
     max-width: 100%;
     padding: 2rem;
   }
-  /* backdrop blur over fixed video is a GPU tax on phones */
+  /* backdrop blur over a fixed background is a GPU tax on phones */
   .story-card, .lls-card {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -804,7 +776,7 @@ body {
   .hero__logo, .hero__title, .hero__tagline { animation: none; opacity: 1; transform: none; }
   .hero__cue .line { animation: none; }
   .scroll-reveal, .story-section, .closing { opacity: 1 !important; transform: none !important; }
-  .video-bg, .lluvia-bg, .lls-buy { transition: none !important; }
+  .lluvia-bg, .lls-buy { transition: none !important; }
 }
 </style>
 </head>
@@ -814,110 +786,49 @@ body {
 
 <a href="#shop" class="shop-pill" id="shopPill">Batch I &middot; Shop</a>
 
-<!-- Mariposa video background -->
-<div class="video-bg" id="videoBg">
-  <video id="mariposaBg" muted playsinline loop preload="metadata">
-    <source src="mariposa-scroll.mp4" type="video/mp4">
-  </video>
-</div>
+<!-- Lluvia wave: drawn once, referenced by all three rows.
+     Stroke weight per row lives in CSS (.lluvia-row svg). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs><g id="lluvia-wave"><path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-linecap="round" fill="none"/>
+      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
+      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/></g></defs>
+</svg>
 
 <!-- Lluvia wave background -->
 <div class="lluvia-bg" id="lluviaBg">
   <div class="lluvia-row" id="row1">
-    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-width="10" stroke-linecap="round" fill="none"/>
-      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-    </svg>
+    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#lluvia-wave"/></svg>
   </div>
   <div class="lluvia-row" id="row2">
-    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-width="12" stroke-linecap="round" fill="none"/>
-      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-    </svg>
+    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#lluvia-wave"/></svg>
   </div>
   <div class="lluvia-row" id="row3">
-    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 Q65,72 130,40 Q195,8 260,40 Q325,72 390,40 Q455,8 520,40 Q585,72 650,40 Q715,8 780,40 Q845,72 910,40 Q975,8 1040,40 Q1105,72 1170,40 Q1235,8 1300,40 Q1365,72 1430,40 Q1495,8 1560,40 Q1625,72 1690,40 Q1755,8 1820,40 Q1885,72 1950,40 Q2015,8 2080,40 Q2145,72 2210,40 Q2275,8 2340,40 Q2405,72 2470,40 Q2535,8 2600,40 Q2665,72 2730,40 Q2795,8 2860,40 Q2925,72 2990,40 Q3055,8 3120,40 Q3185,72 3250,40 Q3315,8 3380,40 Q3445,72 3510,40 Q3575,8 3640,40" stroke="#C4B89A" stroke-width="10" stroke-linecap="round" fill="none"/>
-      <ellipse cx="65" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="195" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="325" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="455" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="585" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="715" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="845" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="975" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1105" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1235" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1365" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1495" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1625" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1755" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="1885" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2015" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2145" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2275" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2405" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2535" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2665" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2795" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="2925" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3055" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3185" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3315" cy="58" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-      <ellipse cx="3445" cy="22" rx="39" ry="4" fill="#C4B89A" opacity="0.45"/>
-    </svg>
+    <svg viewBox="0 0 3600 80" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#lluvia-wave"/></svg>
   </div>
 </div>
 
@@ -938,8 +849,8 @@ body {
     </div>
   </section>
 
-  <!-- GEN 1: From Oaxaca (mariposa) -->
-  <section class="story-section align-left" data-story data-bg="mariposa">
+  <!-- GEN 1: From Oaxaca (lluvia) -->
+  <section class="story-section align-left" data-story data-bg="lluvia">
     <div class="story-card">
       <span class="gen-label gen1">First Generation</span>
       <h2>From Oaxaca</h2>
@@ -1009,7 +920,7 @@ body {
       <article class="lls-card">
         <div class="lls-photo">
           <!-- Replace sketch with Jesse's 4:5 shot of No. 0002 when ready -->
-          <img class="lls-sketch" src="crossbody-sketch.png" alt="Wet-molded crossbody, No. 0002. Product photo coming soon.">
+          <img class="lls-sketch" src="crossbody-sketch.png" loading="lazy" alt="Wet-molded crossbody, No. 0002. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0002</span>
@@ -1033,7 +944,7 @@ body {
       <article class="lls-card">
         <div class="lls-photo">
           <!-- Replace sketch with Jesse's 4:5 shot of No. 0003 when ready -->
-          <img class="lls-sketch" src="crossbody-sketch.png" alt="Wet-molded crossbody, No. 0003. Product photo coming soon.">
+          <img class="lls-sketch" src="crossbody-sketch.png" loading="lazy" alt="Wet-molded crossbody, No. 0003. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0003</span>
@@ -1057,7 +968,7 @@ body {
       <article class="lls-card">
         <div class="lls-photo">
           <!-- Replace sketch with Jesse's 4:5 shot of No. 0004 when ready -->
-          <img class="lls-sketch" src="crossbody-sketch.png" alt="Wet-molded crossbody, No. 0004. Product photo coming soon.">
+          <img class="lls-sketch" src="crossbody-sketch.png" loading="lazy" alt="Wet-molded crossbody, No. 0004. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0004</span>
@@ -1081,7 +992,7 @@ body {
       <article class="lls-card">
         <div class="lls-photo">
           <!-- Replace sketch with Jesse's 4:5 shot of No. 0005 when ready -->
-          <img class="lls-sketch" src="crossbody-sketch.png" alt="Wet-molded crossbody, No. 0005. Product photo coming soon.">
+          <img class="lls-sketch" src="crossbody-sketch.png" loading="lazy" alt="Wet-molded crossbody, No. 0005. Product photo coming soon.">
         </div>
         <div class="lls-plate">
           <span class="lls-batch">Batch I &middot; No. 0005</span>
@@ -1183,8 +1094,6 @@ body {
 
 <script>
 (function() {
-  var video = document.getElementById('mariposaBg');
-  var videoBg = document.getElementById('videoBg');
   var lluviaBg = document.getElementById('lluviaBg');
   var progressBar = document.getElementById('scrollProgress');
   var storySections = document.querySelectorAll('[data-story]');
@@ -1197,109 +1106,72 @@ body {
 
   var ticking = false;
   var heroEnd = window.innerHeight * 0.8;
-  var currentBg = 'none';
-  var isMobile = window.matchMedia('(pointer: coarse), (max-width: 768px)').matches;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var shopSection = document.getElementById('shop');
   var shopPill = document.getElementById('shopPill');
 
-  // Video init
-  video.addEventListener('loadedmetadata', function() {
-    video.currentTime = 0;
-    initScroll();
-  });
-  if (video.readyState >= 1) {
-    video.currentTime = 0;
-    initScroll();
-  }
+  function update() {
+    var scrollY = window.scrollY;
+    var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var scrollFraction = Math.min(Math.max(scrollY / scrollHeight, 0), 1);
 
-  function initScroll() {
-    var duration = video.duration;
-    if (isMobile) { video.playbackRate = 0.6; }
+    // Progress bar
+    progressBar.style.width = (scrollFraction * 100) + '%';
 
-    function update() {
-      var scrollY = window.scrollY;
-      var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var scrollFraction = Math.min(Math.max(scrollY / scrollHeight, 0), 1);
-
-      // Progress bar
-      progressBar.style.width = (scrollFraction * 100) + '%';
-
-      // Shop pill: appears after the hero, retires when the shop arrives
-      if (shopPill && shopSection) {
-        var shopTop = shopSection.getBoundingClientRect().top;
-        var showPill = scrollY > heroEnd && shopTop > window.innerHeight * 0.55;
-        shopPill.classList.toggle('on', showPill);
-      }
-
-      // Determine which background should be active based on visible section
-      var activeBg = 'none';
-      if (scrollY < heroEnd) {
-        activeBg = 'none';
-      } else {
-        // Find the most visible story section
-        for (var i = storySections.length - 1; i >= 0; i--) {
-          var rect = storySections[i].getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.6) {
-            activeBg = storySections[i].getAttribute('data-bg');
-            break;
-          }
-        }
-      }
-
-      // Switch backgrounds
-      if (activeBg === 'mariposa') {
-        videoBg.classList.add('active');
-        lluviaBg.classList.remove('active');
-      } else if (activeBg === 'lluvia') {
-        videoBg.classList.remove('active');
-        lluviaBg.classList.add('active');
-      } else {
-        videoBg.classList.remove('active');
-        lluviaBg.classList.remove('active');
-      }
-
-      // Mariposa video: scrub on desktop, gentle loop on touch, still frame if reduced motion
-      if (activeBg === 'mariposa') {
-        if (reduceMotion) {
-          // hold first frame
-        } else if (isMobile) {
-          if (video.paused) { video.play().catch(function(){}); }
-        } else {
-          var storyProgress = (scrollY - heroEnd) / (scrollHeight - heroEnd);
-          storyProgress = Math.min(Math.max(storyProgress, 0), 1);
-          video.currentTime = storyProgress * duration * 0.15;
-        }
-      } else if (isMobile && !video.paused) {
-        video.pause();
-      }
-
-      // Lluvia wave movement (skipped when the visitor prefers reduced motion)
-      if (!reduceMotion) {
-        var lluviaProgress = scrollY / scrollHeight;
-        for (var j = 0; j < lluviaRows.length; j++) {
-          var shift = lluviaProgress * window.innerWidth * lluviaRows[j].speed;
-          lluviaRows[j].el.style.transform = 'translateX(-' + shift + 'px)';
-        }
-      }
-
-      updateReveals();
-      ticking = false;
+    // Shop pill: appears after the hero, retires when the shop arrives
+    if (shopPill && shopSection) {
+      var shopTop = shopSection.getBoundingClientRect().top;
+      var showPill = scrollY > heroEnd && shopTop > window.innerHeight * 0.55;
+      shopPill.classList.toggle('on', showPill);
     }
 
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
+    // Determine which background should be active based on visible section
+    var activeBg = 'none';
+    if (scrollY < heroEnd) {
+      activeBg = 'none';
+    } else {
+      // Find the most visible story section
+      for (var i = storySections.length - 1; i >= 0; i--) {
+        var rect = storySections[i].getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.6) {
+          activeBg = storySections[i].getAttribute('data-bg');
+          break;
+        }
       }
-    }, { passive: true });
+    }
 
-    window.addEventListener('resize', function() {
-      heroEnd = window.innerHeight * 0.8;
-    });
+    // Switch backgrounds
+    if (activeBg === 'lluvia') {
+      lluviaBg.classList.add('active');
+    } else {
+      lluviaBg.classList.remove('active');
+    }
 
-    update();
+    // Lluvia wave movement (skipped when the visitor prefers reduced motion)
+    if (!reduceMotion) {
+      var lluviaProgress = scrollY / scrollHeight;
+      for (var j = 0; j < lluviaRows.length; j++) {
+        var shift = lluviaProgress * window.innerWidth * lluviaRows[j].speed;
+        lluviaRows[j].el.style.transform = 'translateX(-' + shift + 'px)';
+      }
+    }
+
+    updateReveals();
+    ticking = false;
   }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', function() {
+    heroEnd = window.innerHeight * 0.8;
+  });
+
+  update();
 
   // Story section visibility
   var storyObserver = new IntersectionObserver(function(entries) {
@@ -1405,5 +1277,7 @@ body {
 })();
 /* ]]> */
 </script>
+</body>
+</html>
 </body>
 </html>
